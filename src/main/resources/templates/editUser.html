@@ -5,7 +5,7 @@
   <title>Edit existing user</title>
 </head>
 <body>
-<form th:method="PUT" th:action="@{/}" th:object="${editedUser}">
+<form th:method="PUT" th:action="@{/updateUser}" th:object="${userToUpdate}">
   <input type="hidden" th:field="*{id}">
   <div class="field">
     <label for="name">Name</label>
@@ -19,7 +19,7 @@
     <label for="age">Age</label>
     <input type="number" id="age" th:field="*{age}"/>
   </div>
-  <button type="submit" class="btn btn-primary">Edit</button>
+  <button type="submit">Edit</button>
 </form>
 </body>
 </html>

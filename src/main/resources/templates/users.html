@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<input type="button" th:value="Add" onclick="window.location.href='new'">
+<a href="/createUser"><button>Add User</button></a>
 
 <div th:unless="${#lists.isEmpty(users)}">
   <table>
@@ -25,13 +25,13 @@
       <td th:utext="${user.getLastName}"></td>
       <td th:utext="${user.getAge}"></td>
       <td>
-        <form th:method="DELETE" th:action="@{/delete(userToRemoveId=${user.getId()})}">
-          <input type="submit" value="Delete"/>
-        </form>
+        <a th:href="@{/updateUser/{id}(id=${user.getId()})}">
+          <button>Edit</button>
+        </a>
       </td>
       <td>
-        <a th:href="@{/edit(userToEditId=${user.getId()})}">
-          <button>Edit</button>
+        <a th:href="@{/deleteUser/{id}(id=${user.getId()})}">
+          <button>Delete</button>
         </a>
       </td>
     </tr>

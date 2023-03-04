@@ -1,6 +1,7 @@
 package controller;
 
 import model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,46 +12,45 @@ public class UserController {
 
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/users")
     public String showUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
-    @PostMapping("/")
-    public String saveUser(@ModelAttribute("newUser") User newUser) {
-        userService.saveUser(newUser);
-        return "redirect:/";
-    }
-
-    @DeleteMapping("/delete")
-    public String deleteUser(@RequestParam(value = "userToRemoveId", required = false) Long id) {
-        userService.deleteUserById(id);
-        return "redirect:/";
-    }
-
-    @PutMapping("/")
-    public String editUser(@ModelAttribute("editedUser") User editedUser) {
-        userService.editUser(editedUser);
-        return "redirect:/";
-    }
-
-    @GetMapping("/new")
-    public String getNewUserTemplate(Model model) {
-        User user = new User();
+    @GetMapping("/createUser")
+    public String getCreateUserForm(User user, Model model) {
         model.addAttribute("newUser", user);
         return "createUser";
     }
 
-    @GetMapping("/edit")
-    public String editUser(@RequestParam(value = "userToEditId", required = false) Long id,
-                           Model model) {
-        User editedUser = userService.getUserById(id);
-        model.addAttribute("editedUser", editedUser);
+    @PostMapping("/createUser")
+    public String createUser(User user) {
+        userService.saveUser(user);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUserById(id);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/updateUser/{id}")
+    public String getUpdateUserForm(@PathVariable("id") Long id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("userToUpdate", user);
         return "editUser";
+    }
+
+    @PutMapping("/updateUser")
+    public String updateUser(User user) {
+        userService.saveUser(user);
+        return "redirect:/users";
     }
 }
