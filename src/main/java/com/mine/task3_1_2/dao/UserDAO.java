@@ -1,6 +1,6 @@
-package dao;
+package com.mine.task3_1_2.dao;
 
-import model.User;
+import com.mine.task3_1_2.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

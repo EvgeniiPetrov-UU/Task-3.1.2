@@ -1,7 +1,7 @@
-package service;
+package com.mine.task3_1_2.service;
 
-import dao.UserDAO;
-import model.User;
+import com.mine.task3_1_2.dao.UserDAO;
+import com.mine.task3_1_2.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

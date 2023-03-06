@@ -1,6 +1,6 @@
-package service;
+package com.mine.task3_1_2.service;
 
-import model.User;
+import com.mine.task3_1_2.model.User;
 
 import java.util.List;
 

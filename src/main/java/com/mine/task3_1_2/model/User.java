@@ -1,4 +1,4 @@
-package model;
+package com.mine.task3_1_2.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
